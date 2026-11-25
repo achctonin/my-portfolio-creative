@@ -1,10 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="0; url=frontend/src/pages/index.html">
-<title>Ninotchca Sollestre ? Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ninotchca Sollestre — carousel designer and editor creating visual stories people want to swipe through.">
+  <title>Ninotchca Sollestre — Carousel Design &amp; Editing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/identity.css">
+  <link rel="stylesheet" href="css/creative.css">
+  <script src="js/main.js" defer></script>
 </head>
-<body><p><a href="frontend/src/pages/index.html">Open Ninotchca?s portfolio</a></p></body>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ninotchca Sollestre, home">ns<span aria-hidden="true">.</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="navigation" hidden>Menu</button>
+    <nav id="navigation" aria-label="Main navigation">
+      <a href="#work">Selected work</a><a href="#profile">Meet Ninotchca</a><a href="#contact">Let’s talk</a>
+      <a class="resume-link" href="mailto:ninotchcasollestre26@gmail.com">Hire me ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="intro-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Ninotchca Sollestre · Creative portfolio</p>
+        <h1 id="intro-title">Stories worth<br><em>swiping through.</em></h1>
+        <p class="intro">Hi, I’m Ninotchca. I design and edit carousels that turn one idea into a sequence people want to finish, one slide at a time.</p>
+        <div class="actions"><a class="button primary" href="#work">See the carousels <span aria-hidden="true">↘</span></a></div>
+        <a class="scroll-invitation" href="#profile">Meet the person behind the work <span aria-hidden="true">↓</span></a>
+        <p class="signature">dum spiro, spero <span>— while I breathe, I hope</span></p>
+      </div>
+    </section>
+
+    <section class="profile-section" id="profile" aria-labelledby="profile-title">
+      <div class="wrap profile-grid">
+        <figure class="portrait-composition">
+          <div class="portrait-frame"><img src="assets/images/portrait.png" alt="Ninotchca Sollestre" width="440" height="500" loading="lazy"></div>
+          <figcaption>A visual eye.<br><em>A careful hand.</em></figcaption>
+          <span class="portrait-star" aria-hidden="true">✳</span>
+        </figure>
+        <div class="profile-copy">
+          <p class="eyebrow">01 / The person behind the pixels</p>
+          <h2 id="profile-title">Ninotchca,<br><em>in a few layers.</em></h2>
+          <p class="profile-intro">A designer who loves layout, color, and the rhythm of a well-paced carousel.</p>
+          <p>Green is my favorite color. Hope is a phrase I carry with me: <em>dum spiro, spero.</em> This corner of the web is where my creative work lives.</p>
+          <div class="personal-notes" aria-label="A few layers of my creative work">
+            <details open><summary><span>01</span> The designer <span aria-hidden="true">+</span></summary><p>I care about hierarchy, spacing, and typography: the small decisions that make a slide easy to read at a glance.</p></details>
+            <details><summary><span>02</span> The editor <span aria-hidden="true">+</span></summary><p>I shape images and copy together so every slide earns the swipe to the next one.</p></details>
+            <details><summary><span>03</span> The visual storyteller <span aria-hidden="true">+</span></summary><p>Each carousel has an arc: a hook, a build, and a clear final slide.</p></details>
+          </div>
+          <p class="profile-footnote">A small collection of what makes me, me.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="discipline-ribbon" aria-label="Areas of focus">
+      <div class="ribbon-viewport"><div class="ribbon-track" id="discipline-track">
+        <div class="ribbon-group"><span>Carousel design</span><span class="ribbon-star" aria-hidden="true">&#42;</span><span>Editing</span><span class="ribbon-star" aria-hidden="true">&#42;</span><span>Visual storytelling</span><span class="ribbon-star" aria-hidden="true">&#42;</span></div>
+        <div class="ribbon-group" aria-hidden="true"><span>Carousel design</span><span class="ribbon-star" aria-hidden="true">&#42;</span><span>Editing</span><span class="ribbon-star" aria-hidden="true">&#42;</span><span>Visual storytelling</span><span class="ribbon-star" aria-hidden="true">&#42;</span></div>
+      </div></div>
+    </section>
+
+    <section class="work wrap" id="work" aria-labelledby="work-title">
+      <div class="section-intro"><div><p class="eyebrow">02 / Selected work</p><h2 id="work-title">Carousels,<br>slide <em>by slide.</em></h2></div><p>Choose a carousel, then swipe or click through it.</p></div>
+      <div class="gallery-controls project-tabs" id="project-tabs" role="group" aria-label="Choose a carousel"></div>
+      <article class="featured-project" id="viewer">
+        <div class="project-visual">
+          <div class="slide-frame"><img id="slide" src="" alt="" width="1080" height="1350"></div>
+          <div class="slide-nav">
+            <button type="button" id="prev" aria-label="Previous slide">←</button>
+            <p class="image-caption" id="counter" aria-live="polite"></p>
+            <button type="button" id="next" aria-label="Next slide">→</button>
+          </div>
+          <div class="thumbs" id="thumbs" role="group" aria-label="Jump to a slide"></div>
+        </div>
+        <div class="project-story">
+          <p class="eyebrow" id="p-kind"></p>
+          <h3 id="p-title"></h3>
+          <p id="p-summary"></p>
+          <div class="tags" id="p-tags"></div>
+          <dl class="project-summary"><div><dt>Format</dt><dd id="p-format"></dd></div><div><dt>The story</dt><dd id="p-arc"></dd></div></dl>
+        </div>
+      </article>
+      <noscript><p>Turn on JavaScript to browse the carousels.</p></noscript>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
+      <div><p class="eyebrow">03 / Behind the work</p><h2 id="about-title">A little curiosity.<br><em>A lot of care.</em></h2><p class="about-note">Designing with intention.<br>Editing with heart.</p></div>
+      <div class="about-copy">
+        <p>I’m Ninotchca, a designer who likes turning ideas into carousels that are clear, warm, and easy to follow.</p>
+        <p>I also study computer science, which means I think about how something looks and how it works. You can see my development work in my separate software portfolio.</p>
+        <h3>My toolkit</h3>
+        <ul class="toolkit"><li>Canva</li><li>Figma</li><li>Carousel design</li><li>Layout &amp; typography</li></ul>
+      </div>
+    </div></section>
+
+    <section class="contact wrap" id="contact" aria-labelledby="contact-title"><div class="contact-card">
+      <p class="eyebrow">04 / Make a connection</p><h2 id="contact-title">Have a carousel<br><em>in mind?</em></h2>
+      <p>I’m open to freelance work, collaborations, and new ideas.</p>
+      <a class="email" href="mailto:ninotchcasollestre26@gmail.com">ninotchcasollestre26@gmail.com <span aria-hidden="true">↗</span></a>
+      <div class="contact-links"><a href="https://www.linkedin.com/in/ninotchca-s-348945322/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+      <span class="contact-flower" aria-hidden="true">✳</span>
+    </div></section>
+  </main>
+  <footer class="wrap"><p>© 2026 Ninotchca Sollestre</p><p>Made with care, and a little hope.</p><a href="#top">Back to top ↑</a></footer>
+</body>
 </html>
