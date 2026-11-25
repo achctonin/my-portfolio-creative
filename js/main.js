@@ -4,7 +4,7 @@ const narrow = window.matchMedia('(max-width: 700px)');
 function closeMenu() {
   navigation.hidden = narrow.matches;
   toggle.setAttribute('aria-expanded', 'false');
-  toggle.textContent = 'Menu';
+  toggle.setAttribute('aria-label', 'Open menu');
 }
 function syncNavigation() {
   toggle.hidden = !narrow.matches;
@@ -15,7 +15,7 @@ narrow.addEventListener('change', syncNavigation);
 toggle.addEventListener('click', () => {
   const open = toggle.getAttribute('aria-expanded') !== 'true';
   toggle.setAttribute('aria-expanded', String(open));
-  toggle.textContent = open ? 'Close menu' : 'Menu';
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   navigation.hidden = !open;
 });
 navigation.addEventListener('click', event => {
@@ -100,6 +100,8 @@ const projects = [
     arc: 'A question hook, a few key factors, and a closing slide that invites contact.' }
 ];
 
+// Open on the Miami events carousel first
+projects.sort((a, b) => (b.id === 'sth-miami') - (a.id === 'sth-miami'));
 const $ = id => document.getElementById(id);
 const slide = $('slide'), counter = $('counter'), thumbs = $('thumbs'), tabs = $('project-tabs');
 let current = projects[0], index = 0;
@@ -107,13 +109,26 @@ let current = projects[0], index = 0;
 const src = (p, i) => `${BASE}${p.id}/${String(i + 1).padStart(2, '0')}.jpg`;
 const plain = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
-function showSlide(i) {
+function fadeIn(el, offset, ms = 300, delay = 0) {
+  if (reducedMotion.matches || !el.animate) return;
+  el.animate([{ opacity: 0, transform: offset }, { opacity: 1, transform: 'none' }],
+    { duration: ms, delay, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' });
+}
+
+function showSlide(i, animated = true) {
+  const dir = Math.sign(i - index); // 1 = forward, -1 = back, 0 = same slide
   index = (i + current.count) % current.count;
   slide.src = src(current, index);
   slide.alt = `${plain(current.title)}, slide ${index + 1} of ${current.count}`;
   counter.textContent = `Slide ${index + 1} of ${current.count}`;
   [...thumbs.children].forEach((b, n) => b.setAttribute('aria-pressed', String(n === index)));
   new Image().src = src(current, (index + 1) % current.count); // preload next
+  const t = thumbs.children[index]; // keep the active thumbnail centered
+  if (t) thumbs.scrollTo({ left: t.offsetLeft - (thumbs.clientWidth - t.offsetWidth) / 2, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  if (animated && dir) {
+    fadeIn(slide, `translateX(${dir * 28}px)`);
+    fadeIn(counter, 'translateY(6px)', 240);
+  }
 }
 
 function showProject(p) {
@@ -134,7 +149,8 @@ function showProject(p) {
     b.addEventListener('click', () => showSlide(i));
     thumbs.appendChild(b);
   }
-  showSlide(0);
+  showSlide(0, false);
+  document.querySelectorAll('.project-story > *').forEach((el, n) => fadeIn(el, 'translateY(10px)', 420, n * 60));
 }
 
 projects.forEach(p => {
@@ -161,3 +177,18 @@ slide.addEventListener('touchend', e => {
   startX = null;
 });
 showProject(projects[0]);
+
+// ---- Scroll reveal: subtle fade-up for section text ----
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  document.documentElement.classList.add('reveal-on');
+  const revealer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.profile-copy > *, .section-intro, .about-grid > div > *, .contact-card > :not(.contact-flower)').forEach(el => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = Math.min([...el.parentElement.children].indexOf(el), 5) * 70 + 'ms';
+    revealer.observe(el);
+  });
+}

@@ -6,10 +6,41 @@
 .slide-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px}
 .slide-nav .image-caption{margin:0;min-width:110px;text-align:center}
 .slide-nav button{width:40px;height:40px;border:1px solid var(--sage-dark);border-radius:50%;background:var(--cream);font-size:18px;line-height:1;cursor:pointer}
-.slide-nav button:hover{background:var(--sage-dark);color:#fff}
+@media(hover:hover){.slide-nav button:hover{background:var(--sage-dark);color:#fff}}
 .thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .thumbs button{padding:0;border:2px solid transparent;border-radius:6px;background:none;cursor:pointer;opacity:.6;overflow:hidden}
 .thumbs button[aria-pressed=true]{border-color:var(--sage-dark);opacity:1}
 .thumbs img{width:54px;height:68px;object-fit:cover}
 .portrait-frame img{background:var(--blush-soft)}
 @media(max-width:700px){.project-visual .slide-frame{max-width:100%}.thumbs img{width:44px;height:55px}}
+
+/* ---- Hamburger menu ---- */
+.menu-toggle:not([hidden]){display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%}
+.menu-toggle .bars,.menu-toggle .bars::before,.menu-toggle .bars::after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+.menu-toggle .bars{position:relative}
+.menu-toggle .bars::before,.menu-toggle .bars::after{content:"";position:absolute;left:0}
+.menu-toggle .bars::before{top:-6px}
+.menu-toggle .bars::after{top:6px}
+.menu-toggle[aria-expanded=true] .bars{background:transparent}
+.menu-toggle[aria-expanded=true] .bars::before{top:0;transform:rotate(45deg)}
+.menu-toggle[aria-expanded=true] .bars::after{top:0;transform:rotate(-45deg)}
+@media(prefers-reduced-motion:no-preference){.menu-toggle .bars,.menu-toggle .bars::before,.menu-toggle .bars::after{transition:top .2s,transform .2s,background .2s}}
+
+/* ---- Gallery: touch + mobile ---- */
+.slide-frame{overflow:hidden;touch-action:pan-y pinch-zoom}
+.thumbs{position:relative}
+@media(max-width:700px){
+  .project-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-24px;padding-inline:24px}
+  .project-tabs button{flex:none}
+  .project-visual{padding:12px}
+  .slide-nav button{width:48px;height:48px}
+  .thumbs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:6px;scrollbar-width:none}
+  .thumbs button{flex:none}
+}
+
+/* ---- Scroll reveal ---- */
+@media(prefers-reduced-motion:no-preference){
+  .reveal-on .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease-out,transform .6s cubic-bezier(.22,1,.36,1)}
+  .reveal-on .reveal.in{opacity:1;transform:none}
+}
+
