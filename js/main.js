@@ -88,15 +88,15 @@ const projects = [
     summary: 'A five-slide carousel that makes the case for working with a boutique studio.',
     tags: ['Carousel design', 'Typography'], format: '1080 × 1350 px · 5 slides',
     arc: 'A bold hook, three numbered points with photography, then a short closing line.' },
-  { id: 'sth-miami', tab: 'Miami Events', count: 5, kind: 'Carousel · STH Miami',
+  { id: 'sth-miami', tab: 'Miami Events', count: 6, kind: 'Carousel · STH Miami',
     title: 'Good experiences<br><em>are better shared</em>',
     summary: 'An event-promotion carousel for a Miami week of Pilates and yacht experiences.',
-    tags: ['Carousel design', 'Editing'], format: '1080 × 1350 px · 5 slides',
+    tags: ['Carousel design', 'Editing'], format: '1080 × 1350 px · 6 slides',
     arc: 'An offer first, then the events one by one, ending on a mood-setting closer.' },
-  { id: 'bridging-funding', tab: 'Property Finance', count: 5, kind: 'Carousel · Bridging Funding',
+  { id: 'bridging-funding', tab: 'Property Finance', count: 6, kind: 'Carousel · Bridging Funding',
     title: 'The property is great.<br><em>So why can’t you get the finance?</em>',
-    summary: 'A five-slide carousel explaining why timing and structure matter in property finance.',
-    tags: ['Carousel design', 'Infographic'], format: '1080 × 1350 px · 5 slides',
+    summary: 'A six-slide carousel explaining why timing and structure matter in property finance.',
+    tags: ['Carousel design', 'Infographic'], format: '1080 × 1350 px · 6 slides',
     arc: 'A question hook, a few key factors, and a closing slide that invites contact.' }
 ];
 
